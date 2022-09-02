@@ -31,5 +31,15 @@ public abstract class AbstractDAO<T> {
         em.close();
     }
     
+    public void excluir(T entity){
+        EntityManager em = getEntityManager();
+        
+        em.getTransaction().begin();
+        em.remove(entity);
+        em.getTransaction().commit();
+        
+        em.close();
+    }
+    
     
 }

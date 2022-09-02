@@ -78,5 +78,10 @@ public class Item implements Serializable {
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
+
+    @Override
+    public String toString() {
+        return "Item: " + quantidade + " itens, R$ " + preco + " \n";
+    }
     
 }

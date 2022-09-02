@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 public class ProdutoDAO extends AbstractDAO<Produto>{
-    public List<Produto> buscar(){
+    public List<Produto> getTodos(){
         TypedQuery<Produto> query = getEntityManager().createQuery("SELECT p FROM Produto p", Produto.class);
         
         return query.getResultList();
