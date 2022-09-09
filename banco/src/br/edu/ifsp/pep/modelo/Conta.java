@@ -11,9 +11,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "banco")
+@Table(name = "conta")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Banco implements Serializable{
+public abstract class Conta implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

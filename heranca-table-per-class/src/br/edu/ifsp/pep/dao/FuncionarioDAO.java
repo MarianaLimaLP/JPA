@@ -1,5 +1,6 @@
 package br.edu.ifsp.pep.dao;
 
+import br.edu.ifsp.pep.dao.AbstractDAO;
 import br.edu.ifsp.pep.modelo.Funcionario;
 import java.util.List;
 import javax.persistence.TypedQuery;
