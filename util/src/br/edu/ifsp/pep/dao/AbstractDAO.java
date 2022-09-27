@@ -5,13 +5,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public abstract class AbstractDAO<T> {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("querysPU");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("conexaoPU");
 
     protected EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public void inserir(T entity){
+    public void inserir(T entity) throws Exception{
         EntityManager em = getEntityManager();
         
         em.getTransaction().begin();
