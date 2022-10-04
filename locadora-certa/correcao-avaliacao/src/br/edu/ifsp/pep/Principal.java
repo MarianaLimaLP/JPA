@@ -28,13 +28,13 @@ public class Principal {
     private static ClienteDAO clienteDAO = new ClienteDAO();
     private static LocacaoDAO locacaoDAO = new LocacaoDAO();
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        adicionarVeiculos();
 //        adicionarClientes();
-        locarVeiculo();
+//        locarVeiculo();
 //        exibirVeiculosDisponiveisParaLocacao();
 //        devolverVeiculo();
-    }
+//    }
     
     private static void devolverVeiculo() {
         
