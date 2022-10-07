@@ -25,12 +25,9 @@ import javax.persistence.UniqueConstraint;
             columnNames = {"cidade", "placa"})
 })
 @NamedQueries(value = {
-        @NamedQuery(name = "Veiculo.buscarTodos", 
-                query="SELECT v FROM Veiculo v"),
-    @NamedQuery(name = "Veiculo.buscarDisponiveisParaLocacao", 
-                query="SELECT v FROM Veiculo v WHERE v.locado = false"),
-        @NamedQuery(name = "Veiculo.buscarPorPlacaECidade",
-                query = "SELECT v FROM Veiculo v WHERE v.cidade = :cidade AND v.placa = :placa")
+        @NamedQuery(name = "Veiculo.buscarTodos", query="SELECT v FROM Veiculo v"),
+        @NamedQuery(name = "Veiculo.buscarDisponiveisParaLocacao", query="SELECT v FROM Veiculo v WHERE v.locado = false"),
+        @NamedQuery(name = "Veiculo.findByModelo", query = "SELECT v FROM Veiculo v WHERE UPPER(v.modelo) LIKE UPPER(:modelo)")
 })
 public class Veiculo implements Serializable {
 
