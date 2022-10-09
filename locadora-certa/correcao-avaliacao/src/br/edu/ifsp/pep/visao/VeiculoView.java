@@ -352,7 +352,7 @@ public class VeiculoView extends javax.swing.JDialog {
         if(tfModelo.getText().length() > 5){
             tfPlaca.setText(tfPlaca.getText().replaceAll(" ", ""));
             if((tfPlaca.getText().length()==8)&&(tfPlaca.getText().charAt(3)=='-')){
-                
+                TipoVeiculo tv = (TipoVeiculo) cbTipo.getSelectedItem();
                 try {
                             
                 } catch (Exception ex) {
