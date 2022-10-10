@@ -26,19 +26,18 @@ public class VeiculoView extends javax.swing.JDialog {
     private VeiculoDAO veiculoDAO = new VeiculoDAO();
     private List<Veiculo> veiculos;
     private Mensagem msg = new Mensagem();
-    
+
     public VeiculoView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         bAlterar.setEnabled(false);
         bExcluir.setEnabled(false);
         tpVeiculo.setEnabled(false);
-        
+
         veiculos = veiculoDAO.buscarTodos();
         this.atualizarTabela();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -334,11 +333,11 @@ public class VeiculoView extends javax.swing.JDialog {
     }//GEN-LAST:event_bPesquisarActionPerformed
 
     private void bExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirActionPerformed
-        
+
     }//GEN-LAST:event_bExcluirActionPerformed
 
     private void bAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlterarActionPerformed
-        
+
     }//GEN-LAST:event_bAlterarActionPerformed
 
     private void bInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInserirActionPerformed
@@ -348,19 +347,24 @@ public class VeiculoView extends javax.swing.JDialog {
     }//GEN-LAST:event_bInserirActionPerformed
 
     private void bGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGravarActionPerformed
-        
-        if(tfModelo.getText().length() > 5){
+
+        if (tfModelo.getText().length() > 5) {
             tfPlaca.setText(tfPlaca.getText().replaceAll(" ", ""));
-            if((tfPlaca.getText().length()==8)&&(tfPlaca.getText().charAt(3)=='-')){
-                TipoVeiculo tv = (TipoVeiculo) cbTipo.getSelectedItem();
-                try {
-                            
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            if ((tfPlaca.getText().length() == 8) && (tfPlaca.getText().charAt(3) == '-')) {
+                int ano = Integer.valueOf(tfAno.getText());
+                if (ano > 1900 && ano < 2025) {
+                    TipoVeiculo tv = (TipoVeiculo) cbTipo.getSelectedItem();
+                    try {
+
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    msg.erro("O campo Ano esta incorreto.");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Informe o valor da diária.", "Atenção", JOptionPane.WARNING_MESSAGE);
-            } 
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Informe pelo menos 4 caracteres no campo Nome.", "Atenção", JOptionPane.WARNING_MESSAGE);
         }
@@ -372,25 +376,25 @@ public class VeiculoView extends javax.swing.JDialog {
         tfAno.setText("");
         tfCidade.setText("");
         cbTipo.removeAllItems();
-        
+
         tfPesquisa.requestFocus();
     }//GEN-LAST:event_bCancelarActionPerformed
 
-    private void atualizarTipos(){
+    private void atualizarTipos() {
         for (TipoVeiculo tv : tiposVeiculo) {
             cbTipo.addItem(tv.getNome());
         }
     }
-    
-    private void atualizarTabela(){
-        
+
+    private void atualizarTabela() {
+
         DefaultTableModel modelo = (DefaultTableModel) jTabela.getModel();
         modelo.setNumRows(0);
         for (Veiculo v : veiculos) {
-            modelo.addRow(new Object[] {v.getModelo(), v.getPlaca(), v.isLocado()? "Sim" : "Não", v.getTipo().getNome(), v.getTipo().getValorDiaria()});
+            modelo.addRow(new Object[]{v.getModelo(), v.getPlaca(), v.isLocado() ? "Sim" : "Não", v.getTipo().getNome(), v.getTipo().getValorDiaria()});
         }
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
