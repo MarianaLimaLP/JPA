@@ -12,7 +12,7 @@ public class Mensagem {
     }
     
     public static void atencao(String texto){
-        JOptionPane.showMessageDialog(null, texto, "Atenção!", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, texto, "Atenção!", JOptionPane.WARNING_MESSAGE);
     }
     
 }

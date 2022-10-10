@@ -38,6 +38,14 @@ public class VeiculoView extends javax.swing.JDialog {
         this.atualizarTabela();
     }
 
+    private void limparCampos(){
+        tfModelo.setText("");
+        tfPlaca.setText("");
+        tfAno.setText("");
+        tfCidade.setText("");
+//        cbTipo.removeAllItems();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -352,30 +360,32 @@ public class VeiculoView extends javax.swing.JDialog {
             tfPlaca.setText(tfPlaca.getText().replaceAll(" ", ""));
             if ((tfPlaca.getText().length() == 8) && (tfPlaca.getText().charAt(3) == '-')) {
                 int ano = Integer.valueOf(tfAno.getText());
-                if (ano > 1900 && ano < 2025) {
-                    TipoVeiculo tv = (TipoVeiculo) cbTipo.getSelectedItem();
-                    try {
-
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                if (ano > 1900 && ano < 2025 && tfAno.getText().isEmpty()) {
+                    if (tfCidade.getText().isEmpty()) {
+                        TipoVeiculo tv = (TipoVeiculo) cbTipo.getSelectedItem();
+                        try {
+                            Veiculo veiculo = new Veiculo(tfPlaca.getText(), tfCidade.getText(), tfModelo.getText(), ano, tv);
+                            veiculoDAO.inserir(veiculo);
+                            msg.sucesso("Veiculo criado com sucesso.");
+                        } catch (Exception ex) {
+                            msg.erro(ex.getMessage());
+                        }
+                    } else {
+                        msg.atencao("O campo Cidade tem que estar preenchido.");
                     }
                 } else {
-                    msg.erro("O campo Ano esta incorreto.");
+                    msg.atencao("O campo Ano esta incorreto.");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Informe o valor da diária.", "Atenção", JOptionPane.WARNING_MESSAGE);
+                msg.atencao("O campo Placa esta incorreto.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Informe pelo menos 4 caracteres no campo Nome.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            msg.atencao("Informe pelo menos 4 caracteres no campo Modelo");
         }
     }//GEN-LAST:event_bGravarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        tfModelo.setText("");
-        tfPlaca.setText("");
-        tfAno.setText("");
-        tfCidade.setText("");
-        cbTipo.removeAllItems();
+        limparCampos();
 
         tfPesquisa.requestFocus();
     }//GEN-LAST:event_bCancelarActionPerformed
